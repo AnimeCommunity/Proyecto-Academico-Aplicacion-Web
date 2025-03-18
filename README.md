@@ -8,7 +8,7 @@ Plataforma: WEB
 Propuesta: Productos
 Repositorios: GitHub
 Metodología: Scrum
-Integrantes; Fabio Real, Felipe Suarez, John Leon, Santiago Pineda
+Integrantes; Fabio Real, Felipe Suarez, John Leon, Santiago Pineda, Camilo Caro
 Base de datos: MySQL/Posgree 
 Aplicación para los Prototipos: Pencil 
 Producto: Código, Nombre, Descripción, Categoría (Electrodomésticos, Audio y Video, Celulares,etc.), Disponible (Si, No), Precio, Imagen
