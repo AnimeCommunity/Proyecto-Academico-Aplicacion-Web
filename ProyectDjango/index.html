@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>CRUD</h1>
+    </header>
+    <main>
+        <section class="buscar">
+            <form method="GET">
+                <input type="text" name="q" placeholder="Buscar producto..." value="">
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+        <section class="productos">
+            <!--{% for producto in productos %} -->
+            <div class="producto">
+                <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
+                <h3>nombre</h3>
+                <p>info producto...</p>
+                <form method="DELETE" action="">
+                    
+                    <button type="submit" class="eliminar">Eliminar</button>
+                </form>
+                <form method="UPDATE" action="">
+                    
+                    <button type="submit" class="actualizar">Actualizar</button>
+                </form>
+            </div>
+           <!-- {% endfor %}-->
+        </section>
+        <aside>
+            <h2>Agregar Producto</h2>
+            <form method="POST" >
+                
+                <input type="text" name="code" placeholder="Code" required>
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="text" name="descripcion" placeholder="Descripcion" required>
+                <input type="text" name="categoria" placeholder="Categoria" required>
+                <input type="text" name="disponible" placeholder="Disponible" required>
+                <input type="number" name="precio" placeholder="Precio" required>
+                <input type="url" name="imagen_url" placeholder="Imagen (URL)" required>
+                <button type="submit" class="enviar">Enviar</button>
+            </form>
+        </aside>
+    </main>
+</body>
+</html>
