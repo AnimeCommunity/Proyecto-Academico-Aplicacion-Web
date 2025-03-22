@@ -1,4 +1,6 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,7 +13,9 @@
     <header>
         <h1>CRUD</h1>
     </header>
-    <button onclick="window.location.href='/sectionOne.html'" class="boton-enlace">Seccion 1</button>
+    {% for categoria in categorias %}
+        <h2>{{ categoria.nombre }}</h2>
+    {% endfor %}
     <main>
         <section class="buscar">
             <form method="GET">
