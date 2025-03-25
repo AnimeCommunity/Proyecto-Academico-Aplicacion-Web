@@ -1,35 +1,66 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import producto, categoria
+from .models import Producto
 
-def Crud(request):
-    return render(request, 'index.html')
+#CRUD
 
-def actualizar_producto(request):
-    if request.method == "POST":
-        producto_id = request.POST.get('producto_id')
-        nombre = request.POST.get('nombre')
-        descripcion = request.POST.get('descripcion')
-        precio = request.POST.get('precio')
+def Tienda(request):
+    productos = Producto.objects.all()
+    #categorias = Categoria.objects.all()
+    
 
-        # Buscar el producto y actualizarlo
-        producto_obj = get_object_or_404(producto, id=producto_id)
-        producto_obj.nombre = nombre
-        producto_obj.descripcion = descripcion
-        producto_obj.precio = precio
-        producto_obj.save()
+    return render(request, 'index.html', {'productos': productos})
 
-        return redirect('index')  # Asegúrate de que esta URL está definida en urls.py
+#CREAR
 
-    return redirect('index')  # Si no es POST, regresa al CRUD
+def crear(request):
+    if request.method == 'POST':
+        nombre = request.POST['nombre']
+        precio = request.POST['precio']
+        descripcion = request.POST['descripcion']
+        categoria = request.POST['categoria']  
+        disponible = request.POST['disponible']
+        
 
+        Producto.objects.create(
+            nombre=nombre,
+            precio=precio,
+            descripcion=descripcion,
+            categoria=categoria,
+            disponible=disponible,
+        )
+    return redirect('Tienda')
 
-#CREAR - CAMILO
 #ELIMINAR - JHON
+
+def eliminar(request, id):
+    producto.objects.filter(id=id).delete()
+
+    return redirect('Tienda')
+ 
+
+
 #LEER - FELIPE/HTML
 #ACTUALIZAR - FABIO
+
+def actualizar_producto(request, producto_id):
+    producto_obj = get_object_or_404(producto, id=producto_id)
+
+    if request.method == "POST":
+        
+        nombre = request.POST['nombre']
+        descripcion = request.POST['descripcion']
+        precio = request.POST['precio']
+        
+        disponible = request.POST['disponible']
+        categoria_id = request.POST['categoria']  
+
+
+        # Buscar el producto y actualizarlo
+        producto_obj.save()
+
+    return redirect('Tienda')  
+
+
 #TODO - SANTIAGO
 
 
-def eliminar (request, id):
-    producto.objects.filter(id=id).delete()
-    return redirect('tienda')
