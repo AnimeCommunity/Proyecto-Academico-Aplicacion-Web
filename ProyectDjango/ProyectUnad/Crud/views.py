@@ -30,3 +30,6 @@ def actualizar_producto(request):
 #TODO - SANTIAGO
 
 
+def eliminar (request, id):
+    producto.objects.filter(id=id).delete()
+    return redirect('tienda')
