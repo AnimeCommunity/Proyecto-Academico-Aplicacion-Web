@@ -33,8 +33,12 @@
                     
                     <button type="submit" class="eliminar">Eliminar</button>
                 </form>
-                <form method="UPDATE" action="">
-                    
+                <form method="POST" action="{% url 'actualizar_producto' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <input type="text" name="nombre" value="{{ producto.nombre }}" required>
+                    <input type="text" name="descripcion" value="{{ producto.descripcion }}" required>
+                    <input type="number" name="precio" value="{{ producto.precio }}" required>
                     <button type="submit" class="actualizar">Actualizar</button>
                 </form>
             </div>
@@ -57,4 +61,3 @@
     </main>
 </body>
 </html>
-{% load static %}
