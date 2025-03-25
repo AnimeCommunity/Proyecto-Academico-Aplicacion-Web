@@ -1,66 +1,59 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto
+from .forms import ProductoForm
+
 
 #CRUD
 
-def Tienda(request):
+def tienda(request):
     productos = Producto.objects.all()
-    #categorias = Categoria.objects.all()
-    
+    form = ProductoForm()
 
-    return render(request, 'index.html', {'productos': productos})
-
-#CREAR
-
-def crear(request):
+    #CREAR
     if request.method == 'POST':
-        nombre = request.POST['nombre']
-        precio = request.POST['precio']
-        descripcion = request.POST['descripcion']
-        categoria = request.POST['categoria']  
-        disponible = request.POST['disponible']
-        
+         form = ProductoForm(request.POST, request.FILES)
+         if form.is_valid():
+            form.save()
+            return redirect("tienda")
+              
 
-        Producto.objects.create(
-            nombre=nombre,
-            precio=precio,
-            descripcion=descripcion,
-            categoria=categoria,
-            disponible=disponible,
-        )
-    return redirect('Tienda')
+
+    return render(request, 'index.html', {'productos': productos, "form":form})
+
+
+
 
 #ELIMINAR - JHON
-
-def eliminar(request, id):
-    producto.objects.filter(id=id).delete()
-
-    return redirect('Tienda')
+def eliminar (request, id):
+    Producto.objects.filter(id=id).delete()
+    return redirect('tienda')
  
 
 
 #LEER - FELIPE/HTML
 #ACTUALIZAR - FABIO
-
-def actualizar_producto(request, producto_id):
-    producto_obj = get_object_or_404(producto, id=producto_id)
+def actualizar(request, id):
+    producto = get_object_or_404(producto, id=id)
 
     if request.method == "POST":
-        
-        nombre = request.POST['nombre']
-        descripcion = request.POST['descripcion']
-        precio = request.POST['precio']
-        
-        disponible = request.POST['disponible']
-        categoria_id = request.POST['categoria']  
+        form = ProductoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("tienda")
+    else:
+        form = ProductoForm(instance=producto)
+    
 
+    return render(request, 'editar.html', {"form":form, 'producto': producto}) 
+         
+ 
 
-        # Buscar el producto y actualizarlo
-        producto_obj.save()
+         
 
-    return redirect('Tienda')  
 
 
 #TODO - SANTIAGO
 
 
+#Arreglar Main
+#Crear nuevas ramas

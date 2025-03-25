@@ -13,51 +13,54 @@
     <header>
         <h1>CRUD</h1>
     </header>
-    {% for categoria in categorias %}
-        <h2>{{ categoria.nombre }}</h2>
-    {% endfor %}
+   
     <main>
+
+
         <section class="buscar">
             <form method="GET">
                 <input type="text" name="q" placeholder="Buscar producto..." value="">
                 <button type="submit">Buscar</button>
             </form>
         </section>
-        <section class="productos">
-            <!--{% for producto in productos %} -->
+
+        
+        <div class="container">
             <div class="producto">
-                <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
-                <h3>nombre</h3>
-                <p>info producto...</p>
-                <form method="DELETE" action="">
-                    
-                    <button type="submit" class="eliminar">Eliminar</button>
-                </form>
-                <form method="POST" action="{% url 'actualizar_producto' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
-                    <input type="text" name="nombre" value="{{ producto.nombre }}" required>
-                    <input type="text" name="descripcion" value="{{ producto.descripcion }}" required>
-                    <input type="number" name="precio" value="{{ producto.precio }}" required>
-                    <button type="submit" class="actualizar">Actualizar</button>
-                </form>
-            </div>
-           <!-- {% endfor %}-->
-        </section>
-        <aside>
-            <h2>Agregar Producto</h2>
-            <form method="POST" >
+                <h2>productos</h2>
+
+                {% for producto in productos %}
+                {{ producto.nombre }}
+                {{ producto.precio }}
+                {{ producto.descripcion }}
+                {{ producto.categori}}
+                {{ producto.disponible }}
+                {{ producto.imagen.url}}
+
                 
-                <input type="text" name="code" placeholder="Code" required>
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="text" name="descripcion" placeholder="Descripcion" required>
-                <input type="text" name="categoria" placeholder="Categoria" required>
-                <input type="text" name="disponible" placeholder="Disponible" required>
-                <input type="number" name="precio" placeholder="Precio" required>
-                <input type="url" name="imagen_url" placeholder="Imagen (URL)" required>
-                <button type="submit" class="enviar">Enviar</button>
+                <a href="{% url 'eliminar' producto.id %}">eliminar</a>
+                
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+
+
+        <div>
+            <h2>Agregar Producto</h2>
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p}}
+
+            <button type="submit"> guardar</button>
             </form>
-        </aside>
+        </div>
+
+
+
     </main>
 </body>
 </html>
