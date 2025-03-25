@@ -33,10 +33,10 @@ def eliminar (request, id):
 #LEER - FELIPE/HTML
 #ACTUALIZAR - FABIO
 def actualizar(request, id):
-    producto = get_object_or_404(producto, id=id)
+    producto = get_object_or_404(Producto, id=id)
 
     if request.method == "POST":
-        form = ProductoForm(request.POST, request.FILES)
+        form = ProductoForm(request.POST, request.FILES, instance=producto)
         if form.is_valid():
             form.save()
             return redirect("tienda")
@@ -44,7 +44,7 @@ def actualizar(request, id):
         form = ProductoForm(instance=producto)
     
 
-    return render(request, 'editar.html', {"form":form, 'producto': producto}) 
+    return render(request, 'update.html', {"form":form, 'producto': producto}) 
          
  
 

@@ -35,12 +35,13 @@
                 {{ producto.descripcion }}
                 {{ producto.categori}}
                 {{ producto.disponible }}
-                {{ producto.imagen.url}}
+                {{ producto.imagen}}
 
                 
                 <a href="{% url 'eliminar' producto.id %}">eliminar</a>
-                
+                <a href="{% url 'actualizar' producto.id %}">actualizar</a>
                 {% endfor %}
+
 
 
             </div>

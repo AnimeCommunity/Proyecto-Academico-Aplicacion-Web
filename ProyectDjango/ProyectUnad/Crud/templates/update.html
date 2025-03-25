@@ -1,0 +1,11 @@
+
+<div>
+    <h2>Actualizar</h2>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+    </form>
+</div>
+
+<button onclick="location.href='{% url 'tienda' %}'">Volver</button>
