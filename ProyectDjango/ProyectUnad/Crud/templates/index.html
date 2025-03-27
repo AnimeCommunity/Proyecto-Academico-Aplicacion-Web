@@ -23,11 +23,9 @@
             </form>
         </section>
 
-        
         <div class="container">
             <div class="productos">
                 <h2>Productos</h2>
-
                 {% for producto in productos %}
                 <div class="producto">
                     <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
@@ -35,58 +33,43 @@
                     <p>Precio: ${{ producto.precio }}</p>
                     <p>{{ producto.descripcion }}</p>
                     <p>Categoría: {{ producto.categoria }}</p>
-                    
-
-                
-                <a class="eliminar" href="{% url 'eliminar' producto.id %}">Eliminar</a>
-                <a class="actualizar" href="{% url 'actualizar' producto.id %}">Actualizar</a>
+                    <a class="eliminar" href="{% url 'eliminar' producto.id %}">Eliminar</a>
+                    <a class="actualizar" href="{% url 'actualizar' producto.id %}">Actualizar</a>
                 </div>
                 {% endfor %}
-
-
-
             </div>
-
-        </div>
-
-
-
-        <div class="form-container">
-            <h2>Agregar Producto</h2>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
-                    {{ form.nombre }}
-                </div>
         
-                <div class="form-group">
-                    <label for="{{ form.precio.id_for_label }}">Precio:</label>
-                    {{ form.precio }}
-                </div>
-        
-                <div class="form-group">
-                    <label for="{{ form.descripcion.id_for_label }}">Descripción:</label>
-                    {{ form.descripcion }}
-                </div>
-        
-                <div class="form-group">
-                    <label for="{{ form.categoria.id_for_label }}">Categoría:</label>
-                    {{ form.categoria }}
-                </div>
-        
-                <div class="form-group">
-                    <label for="{{ form.disponible.id_for_label }}">Disponible:</label>
-                    {{ form.disponible }}
-                </div>
-        
-                <div class="form-group">
-                    <label for="{{ form.imagen.id_for_label }}">Imagen:</label>
-                    {{ form.imagen }}
-                </div>
-        
-                <button type="submit" class="btn-submit">Guardar</button>
-            </form>
+            <div class="form-container">
+                <h2>Agregar Producto</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                        {{ form.nombre }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.precio.id_for_label }}">Precio:</label>
+                        {{ form.precio }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.descripcion.id_for_label }}">Descripción:</label>
+                        {{ form.descripcion }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.categoria.id_for_label }}">Categoría:</label>
+                        {{ form.categoria }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.disponible.id_for_label }}">Disponible:</label>
+                        {{ form.disponible }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.imagen.id_for_label }}">Imagen:</label>
+                        {{ form.imagen }}
+                    </div>
+                    <button type="submit" class="btn-submit">Guardar</button>
+                </form>
+            </div>
         </div>
         
 

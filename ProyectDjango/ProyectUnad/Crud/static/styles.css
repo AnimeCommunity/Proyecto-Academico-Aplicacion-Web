@@ -70,6 +70,7 @@ main {
 }
 
 .producto {
+    flex: 1 1 calc(33.33% - 20px);
     background: white;
     padding: 10px;
     border: 1px solid #ccc;
@@ -118,6 +119,9 @@ main {
     border-radius: 8px;
     box-sizing: border-box;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 28%;
+    min-width: 280px;
+    flex-shrink: 0; 
 }
 
 .form-group {
