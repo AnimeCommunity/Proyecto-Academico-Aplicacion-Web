@@ -20,7 +20,7 @@ header {
 
 main {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     width: 80%;
@@ -49,33 +49,52 @@ main {
     cursor: pointer;
 }
 
+
+.container{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .productos {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     flex-grow: 1;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: 60%;
+    align-items: stretch;
 }
 
 .producto {
     background: white;
     padding: 10px;
     border: 1px solid #ccc;
-    text-align: center;
-    width: 180px;
+    text-align: flex-start;
+    width: 200px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .producto img {
     max-width: 100%;
     height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+
 }
 
-.producto button {
+.producto a {
     margin-top: 5px;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+    
 }
 
 .eliminar {
@@ -88,28 +107,62 @@ main {
     color: white;
 }
 
-aside {
-    width: 250px;
+.form-container {
+    width: 300px;
     background: white;
-    padding: 10px;
+    padding: 15px;
+    padding-right: 5px;
     border: 1px solid #ccc;
     margin-left: 20px;
     text-align: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-aside input {
-    width: 90%;
-    padding: 5px;
+.form-group {
     margin-bottom: 10px;
-    border: 1px solid #999;
+    text-align: left;
+    padding-right: 25px;
 }
 
-aside button {
-    width: 90%;
+.form-group label {
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input, .form-textarea, .form-select, .form-file {
+    width: 100%;
     padding: 8px;
-    margin-top: 5px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.form-textarea {
+    resize: none;
+}
+
+.form-checkbox {
+    width: auto;
+    margin-left: 5px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
     border: none;
     cursor: pointer;
     background-color: green;
     color: white;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-submit:hover {
+    background-color: darkgreen;
 }

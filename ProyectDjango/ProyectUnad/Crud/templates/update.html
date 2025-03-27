@@ -1,11 +1,25 @@
+{% load static %}
 
-<div>
-    <h2>Actualizar</h2>
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-    </form>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar</title>
+        <link rel="stylesheet" href="{% static 'styles2.css' %}">
+</head>
+<body>
+        <div class="actualizar-container">
+        <h2>Actualizar Producto</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
 
-<button onclick="location.href='{% url 'tienda' %}'">Volver</button>
+    <button class="volver-btn" onclick="window.location.href='{% url 'tienda' %}'">Volver</button>
+</body>
+</html>
+
+{% load static %}
