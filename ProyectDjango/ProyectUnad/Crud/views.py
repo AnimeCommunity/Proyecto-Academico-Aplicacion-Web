@@ -6,8 +6,13 @@ from .forms import ProductoForm
 #CRUD
 
 def tienda(request):
+    query = request.GET.get('q', '')
     productos = Producto.objects.all()
     form = ProductoForm()
+
+    if query:
+        productos = productos.filter(nombre__icontains=query)
+    
 
     #CREAR
     if request.method == 'POST':
@@ -18,7 +23,7 @@ def tienda(request):
               
 
 
-    return render(request, 'index.html', {'productos': productos, "form":form})
+    return render(request, 'index.html', {'productos': productos, "form":form, 'query': query})
 
 
 
@@ -55,5 +60,4 @@ def actualizar(request, id):
 #TODO - SANTIAGO
 
 
-#Arreglar Main
-#Crear nuevas ramas
+

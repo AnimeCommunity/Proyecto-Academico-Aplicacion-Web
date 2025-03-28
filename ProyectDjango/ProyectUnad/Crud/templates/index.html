@@ -1,67 +1,99 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD</title>
-      <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
+
 <body>
     <header>
         <h1>CRUD</h1>
     </header>
-   
+
     <main>
 
 
         <section class="buscar">
             <form method="GET">
-                <input type="text" name="q" placeholder="Buscar producto..." value="">
+                <input type="text" id="inputbusqueda" name="q" placeholder="Buscar producto..." value="{{query}}">
                 <button type="submit">Buscar</button>
+                {% if query %}
+                    <button type="button" id="limpiar">✖</button>
+                {% endif %}
             </form>
         </section>
 
-        
         <div class="container">
-            <div class="producto">
-                <h2>productos</h2>
-
-                {% for producto in productos %}
-                {{ producto.nombre }}
-                {{ producto.precio }}
-                {{ producto.descripcion }}
-                {{ producto.categori}}
-                {{ producto.disponible }}
-                {{ producto.imagen}}
-
-                
-                <a href="{% url 'eliminar' producto.id %}">eliminar</a>
-                <a href="{% url 'actualizar' producto.id %}">actualizar</a>
-                {% endfor %}
-
-
-
+            <div class="productos">
+                <h2>Productos</h2>
+                {% if productos %}
+                    {% for producto in productos %}
+                    <div class="producto">
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                        <h3>{{ producto.nombre }}</h3>
+                        <p>Precio: ${{ producto.precio }}</p>
+                        <p>{{ producto.descripcion }}</p>
+                        <p>Categoría: {{ producto.categoria }}</p>
+                        <a class="eliminar" href="{% url 'eliminar' producto.id %}">Eliminar</a>
+                        <a class="actualizar" href="{% url 'actualizar' producto.id %}">Actualizar</a>
+                    </div>
+                    {% endfor %}
+                {%else%}
+                    <p>No se han encontrado productos...</p>
+                {% endif %}
             </div>
 
+            <div class="form-container">
+                <h2>Agregar Producto</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                        {{ form.nombre }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.precio.id_for_label }}">Precio:</label>
+                        {{ form.precio }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.descripcion.id_for_label }}">Descripción:</label>
+                        {{ form.descripcion }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.categoria.id_for_label }}">Categoría:</label>
+                        {{ form.categoria }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.disponible.id_for_label }}">Disponible:</label>
+                        {{ form.disponible }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.imagen.id_for_label }}">Imagen:</label>
+                        {{ form.imagen }}
+                    </div>
+                    <button type="submit" class="btn-submit">Guardar</button>
+                </form>
+            </div>
         </div>
 
-
-
-        <div>
-            <h2>Agregar Producto</h2>
-            <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p}}
-
-            <button type="submit"> guardar</button>
-            </form>
-        </div>
 
 
 
     </main>
+    <script>
+        document.getElementById("limpiar")?.addEventListener("click", function () {
+            let searchInput = document.getElementById("inputbusqueda");
+            searchInput.value = "";
+            window.location.href = window.location.pathname;
+        });
+    </script>
 </body>
+
 </html>
+
+{% load static %}
