@@ -21,6 +21,7 @@ header {
 main {
     display: flex;
     justify-content: space-between;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     width: 80%;
@@ -59,13 +60,31 @@ main {
     justify-content: space-between;
 }
 
+
+.container{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .productos {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     flex-grow: 1;
     justify-content: flex-start;
+    justify-content: flex-start;
     max-width: 60%;
+    align-items: stretch;
+}
+
+.productos h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
     align-items: stretch;
 }
 
@@ -77,10 +96,15 @@ main {
 
 .producto {
     flex: 1 1 calc(33.33% - 20px);
+    flex: 1 1 calc(33.33% - 20px);
     background: white;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
+    width: 200px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 200px;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -94,13 +118,21 @@ main {
     object-fit: cover;
     border-radius: 5px;
 
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+
 }
 
+.producto a {
 .producto a {
     margin-top: 5px;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+    
     text-decoration: none;
     
 }
@@ -109,17 +141,23 @@ main {
     background-color: red;
     color: white;
     border-radius: 5px;
+    border-radius: 5px;
 }
 
 .actualizar {
     background-color: blue;
     color: white;
     border-radius: 5px;
+    border-radius: 5px;
 }
 
 .form-container {
     width: 300px;
+.form-container {
+    width: 300px;
     background: white;
+    padding: 15px;
+    padding-right: 5px;
     padding: 15px;
     padding-right: 5px;
     border: 1px solid #ccc;
@@ -134,7 +172,30 @@ main {
 }
 
 .form-group {
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 28%;
+    min-width: 280px;
+    flex-shrink: 0; 
+}
+
+.form-group {
     margin-bottom: 10px;
+    text-align: left;
+    padding-right: 25px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input, .form-textarea, .form-select, .form-file {
+    width: 100%;
+    padding: 8px;
     text-align: left;
     padding-right: 25px;
 }
@@ -166,7 +227,24 @@ main {
 
 .btn-submit {
     width: 100%;
+    border-radius: 5px;
+    
+    max-width: 100%;
+}
+
+.form-textarea {
+    resize: none;
+}
+
+.form-checkbox {
+    width: auto;
+    margin-left: 5px;
+}
+
+.btn-submit {
+    width: 100%;
     padding: 8px;
+    margin-top: 10px;
     margin-top: 10px;
     border: none;
     cursor: pointer;
@@ -174,6 +252,10 @@ main {
     color: white;
     font-size: 16px;
     border-radius: 5px;
+}
+
+.btn-submit:hover {
+    background-color: darkgreen;
 }
 
 .btn-submit:hover {

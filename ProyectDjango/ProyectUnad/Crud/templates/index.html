@@ -2,43 +2,52 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD</title>
-      <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
+
 <body>
     <header>
         <h1>CRUD</h1>
     </header>
-   
+
     <main>
 
 
         <section class="buscar">
             <form method="GET">
-                <input type="text" name="q" placeholder="Buscar producto..." value="">
+                <input type="text" id="inputbusqueda" name="q" placeholder="Buscar producto..." value="{{query}}">
                 <button type="submit">Buscar</button>
+                {% if query %}
+                    <button type="button" id="limpiar">✖</button>
+                {% endif %}
             </form>
         </section>
 
         <div class="container">
             <div class="productos">
                 <h2>Productos</h2>
-                {% for producto in productos %}
-                <div class="producto">
-                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
-                    <h3>{{ producto.nombre }}</h3>
-                    <p>Precio: ${{ producto.precio }}</p>
-                    <p>{{ producto.descripcion }}</p>
-                    <p>Categoría: {{ producto.categoria }}</p>
-                    <a class="eliminar" href="{% url 'eliminar' producto.id %}">Eliminar</a>
-                    <a class="actualizar" href="{% url 'actualizar' producto.id %}">Actualizar</a>
-                </div>
-                {% endfor %}
+                {% if productos %}
+                    {% for producto in productos %}
+                    <div class="producto">
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                        <h3>{{ producto.nombre }}</h3>
+                        <p>Precio: ${{ producto.precio }}</p>
+                        <p>{{ producto.descripcion }}</p>
+                        <p>Categoría: {{ producto.categoria }}</p>
+                        <a class="eliminar" href="{% url 'eliminar' producto.id %}">Eliminar</a>
+                        <a class="actualizar" href="{% url 'actualizar' producto.id %}">Actualizar</a>
+                    </div>
+                    {% endfor %}
+                {%else%}
+                    <p>No se han encontrado productos...</p>
+                {% endif %}
             </div>
-        
+
             <div class="form-container">
                 <h2>Agregar Producto</h2>
                 <form method="POST" enctype="multipart/form-data">
@@ -71,12 +80,20 @@
                 </form>
             </div>
         </div>
-        
+
 
 
 
     </main>
+    <script>
+        document.getElementById("limpiar")?.addEventListener("click", function () {
+            let searchInput = document.getElementById("inputbusqueda");
+            searchInput.value = "";
+            window.location.href = window.location.pathname;
+        });
+    </script>
 </body>
+
 </html>
 
 {% load static %}
